@@ -1,7 +1,6 @@
 package nomes;
 
 import java.util.Optional;
-import java.util.function.Consumer;
 
 /**
  * @author Ricardo Job
@@ -12,6 +11,7 @@ public class Module {
 
     private Optional<String> app;
     private Optional<String> module;
+    private String prefix = "java:global";
 
     protected Module(String app) {
         this(app, null);
@@ -25,9 +25,22 @@ public class Module {
     public Module module(String module) {
         return new Module(this.app.get(), module);
     }
+    
+    public Module global(){
+        this.prefix = "java:global";
+        return this;
+    }
+    public Module app(){
+        this.prefix = "java:app";
+        return this;
+    }
+    public Module module(){
+        this.prefix = "java:module";
+        return this;
+    }
 
-    public String global() {    
-        final StringBuilder builder = new StringBuilder("java:globa");
+    public String of() {    
+        final StringBuilder builder = new StringBuilder(prefix);
         app.ifPresent(t -> builder.append("/").append(app.get()));
         module.ifPresent(t -> builder.append("/").append(module.get()));
         return builder.toString();//+app + "/" + module;

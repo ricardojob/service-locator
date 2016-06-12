@@ -1,5 +1,8 @@
 package nomes;
 
+import ifpb.ads.context.ConfigContext;
+import ifpb.ads.locator.GlassFishContext;
+
 /**
  * @author Ricardo Job
  * @mail ricardo.job@ifpb.edu.br
@@ -8,7 +11,11 @@ package nomes;
 public class Cliente {
 
     public static void main(String[] args) {
-        Cliente cliente = new Cliente();
+        ConfigContext context = new GlassFishContext();
+        Module module = new Module("ejb");
+        
+        ServerContext cliente = new ServerContext(context, module);
+        
         System.out.println(cliente
                 .bean("CalculadoraImpl")
                 .withInterface(Cliente.class)
@@ -16,22 +23,22 @@ public class Cliente {
         System.out.println(cliente
                 .bean("CalculadoraImpl2")
                 .name());
-        
+
         System.out.println(cliente
-                .app("ejb")
+                .app()
                 .module("core")
-                .global());;
+                .of());;
         System.out.println(cliente
-                .app("ejb")
-                .global());;
-     }
-    
-    public BeanLocator bean(String bean) {
-        return new BeanLocator(bean);
+                .app()
+                .of());
+        System.out.println(cliente
+                .bean("CalculadoraImpl")
+                .withInterface(Cliente.class)
+                .name());
+        System.out.println(cliente
+                .bean("CalculadoraImpl")
+//                .withInterface(Cliente.class)
+                .name());
     }
-    
-    public Module app(String app){
-        return new Module(app);
-    }
-    
+
 }
