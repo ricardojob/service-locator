@@ -13,7 +13,7 @@ public class GlassFishContextTest {
 
     private GlassFishContext instance;
     private ConfigContext config = new DefaultContext("192.168.99.100", "3700");
-    
+
     @Test
     public void testPropertiesRemote() {
         System.out.println("testPropertiesRemote");
@@ -24,11 +24,9 @@ public class GlassFishContextTest {
         String factoryResult = "com.sun.enterprise.naming.SerialInitContextFactory";
 
         assertNotNull("values null in properties", result);
-        assertEquals(portResult, result.getProperty("org.omg.CORBA.ORBInitialHost"));
-        assertEquals(hostResult, result.getProperty("org.omg.CORBA.ORBInitialPort"));
+        assertEquals(hostResult, result.getProperty("org.omg.CORBA.ORBInitialHost"));
+        assertEquals(portResult, result.getProperty("org.omg.CORBA.ORBInitialPort"));
         assertEquals(factoryResult, result.getProperty("java.naming.factory.initial"));
     }
-
-    
 
 }
