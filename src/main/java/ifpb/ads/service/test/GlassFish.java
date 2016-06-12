@@ -8,6 +8,7 @@ import javax.naming.InitialContext;
 import javax.naming.NameClassPair;
 import javax.naming.NamingEnumeration;
 import javax.naming.NamingException;
+import nomes.BeanLocator;
 
 /**
  *
@@ -34,4 +35,5 @@ public class GlassFish {
         }
     }
 
+    
 }
