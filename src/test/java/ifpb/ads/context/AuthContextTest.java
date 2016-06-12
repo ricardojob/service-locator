@@ -1,6 +1,7 @@
-package ifpb.ads.service.glassfish;
+package ifpb.ads.context;
 
-import ifpb.ads.service.glassfish.ProviderContext.Provider;
+import ifpb.ads.context.AuthContext;
+import ifpb.ads.context.DefaultContext;
 import java.util.Properties;
 import org.junit.Test;
 import static org.junit.Assert.*;

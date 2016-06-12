@@ -1,5 +1,8 @@
-package ifpb.ads.service.glassfish;
+package ifpb.ads.locator;
 
+import ifpb.ads.context.ConfigContext;
+import ifpb.ads.context.CorbaContext;
+import ifpb.ads.context.DefaultContext;
 import java.util.Properties;
 import javax.naming.Context;
 
@@ -13,7 +16,7 @@ public class GlassFishContext implements ConfigContext {
     private final ConfigContext config;
 
     public GlassFishContext() {
-        this(new DefaultContext("127.0.0.1", "3700"));
+        this(new CorbaContext(new DefaultContext("127.0.0.1", "3700")));
     }
 
     public GlassFishContext(final ConfigContext config) {
@@ -22,12 +25,7 @@ public class GlassFishContext implements ConfigContext {
 
     @Override
     public Properties properties() {
-        Properties prop = config.properties();
-        String host = prop.getProperty("host", "127.0.0.1");
-        String port = prop.getProperty("port", "3700");
-        Properties properties = new Properties(prop);
-        properties.setProperty("org.omg.CORBA.ORBInitialHost", host);
-        properties.setProperty("org.omg.CORBA.ORBInitialPort", port);
+        Properties properties = new Properties(config.properties());
         properties.put(Context.INITIAL_CONTEXT_FACTORY,
                 "com.sun.enterprise.naming.SerialInitContextFactory");
         return properties;

@@ -1,4 +1,4 @@
-package ifpb.ads.service.glassfish;
+package ifpb.ads.context;
 
 import java.util.Properties;
 import javax.naming.Context;
@@ -8,13 +8,13 @@ import javax.naming.Context;
  * @mail ricardo.job@ifpb.edu.br
  * @since 11/06/2016, 23:47:29
  */
-class AuthContext implements ConfigContext {
+public class AuthContext implements ConfigContext {
 
     private final ConfigContext context;
     private final String user;
     private final String password;
 
-    protected AuthContext(ConfigContext defaultContex, String user, String password) {
+    public AuthContext(ConfigContext defaultContex, String user, String password) {
         this.context = defaultContex;
         this.password = password;
         this.user = user;

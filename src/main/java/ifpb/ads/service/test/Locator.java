@@ -1,4 +1,4 @@
-package ifpb.ads.service;
+package ifpb.ads.service.test;
 
 /**
  *

@@ -1,4 +1,4 @@
-package ifpb.ads.service.glassfish;
+package ifpb.ads.context;
 
 import java.util.Properties;
 
@@ -7,14 +7,14 @@ import java.util.Properties;
  * @mail ricardo.job@ifpb.edu.br
  * @since 11/06/2016, 23:47:29
  */
-class DefaultContext implements ConfigContext {
+public class DefaultContext implements ConfigContext {
 
     private final Properties properties = new Properties();
 
     private final String host;
     private final String port;
 
-    protected DefaultContext(final String host, final String port) {
+    public DefaultContext(final String host, final String port) {
         this.port = port;
         this.host = host;
     }

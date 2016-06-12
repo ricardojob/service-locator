@@ -1,4 +1,4 @@
-package ifpb.ads.service.glassfish;
+package ifpb.ads.context;
 
 import java.util.Properties;
 import javax.naming.Context;
@@ -14,7 +14,7 @@ public class ProviderContext implements ConfigContext {
     private final Provider provider;
     private String url;
 
-    protected ProviderContext(ConfigContext defaultContex) {
+    public ProviderContext(ConfigContext defaultContex) {
         this(defaultContex, Provider.HTTP_REMOTING);
     }
 

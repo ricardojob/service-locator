@@ -1,4 +1,4 @@
-package ifpb.ads.service;
+package ifpb.ads.service.test;
 
 import java.util.Properties;
 import java.util.logging.Level;

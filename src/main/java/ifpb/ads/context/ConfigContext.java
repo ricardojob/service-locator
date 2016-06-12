@@ -1,4 +1,4 @@
-package ifpb.ads.service.glassfish;
+package ifpb.ads.context;
 
 import java.util.Properties;
 
