@@ -1,5 +1,6 @@
-package ifpb.ads.context;
+package ifpb.locator.context;
 
+import ifpb.locator.ConfigContext;
 import java.util.Properties;
 import javax.naming.Context;
 
@@ -22,8 +23,8 @@ public class AuthContext implements ConfigContext {
 
     @Override
     public Properties properties() {
-        Properties prop = context.properties();
-        Properties properties = new Properties(prop);
+        Properties properties = new Properties();
+        properties.putAll(context.properties());
         properties.put(Context.SECURITY_PRINCIPAL, user);
         properties.put(Context.SECURITY_CREDENTIALS, password);
         return properties;

@@ -1,5 +1,6 @@
-package ifpb.ads.context;
+package ifpb.locator.context;
 
+import ifpb.locator.ConfigContext;
 import java.util.Properties;
 import javax.naming.Context;
 
@@ -22,7 +23,8 @@ public class CorbaContext implements ConfigContext {
         Properties prop = context.properties();
         String host = prop.getProperty("host", "127.0.0.1");
         String port = prop.getProperty("port", "8080");
-        Properties properties = new Properties(prop);
+        Properties properties = new Properties();
+        properties.putAll(prop);
         properties.setProperty("org.omg.CORBA.ORBInitialHost", host);
         properties.setProperty("org.omg.CORBA.ORBInitialPort", port);
         return properties;

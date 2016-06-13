@@ -1,5 +1,6 @@
-package ifpb.ads.context;
+package ifpb.locator.context;
 
+import ifpb.locator.ConfigContext;
 import java.util.Properties;
 
 /**

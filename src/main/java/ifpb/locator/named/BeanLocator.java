@@ -1,18 +1,16 @@
-package nomes;
+package ifpb.locator.named;
 
-import ifpb.ads.context.ConfigContext;
+import ifpb.locator.ServerContext;
 
 /**
  * @author Ricardo Job
  * @mail ricardo.job@ifpb.edu.br
  * @since 12/06/2016, 01:51:15
  */
-public class BeanLocator<T> {
+public class BeanLocator{
 
     private StringBuilder builder;
-    private Class<T> clazz;
-//    private Module module;
-//    private ConfigContext context;
+    private Class clazz;
 
     private ServerContext context;
 
@@ -26,13 +24,13 @@ public class BeanLocator<T> {
         builder.append(bean);
     }
 
-    private BeanLocator(ServerContext context, String bean, Class<T> clazz) {
+    private BeanLocator(ServerContext context, String bean, Class clazz) {
         this(context, bean);
         this.clazz = clazz;
         builder.append("!").append(clazz.getName());
     }
 
-    public BeanLocator<T> withInterface(Class<T> clazz) {
+    public BeanLocator withInterface(Class clazz) {
         return new BeanLocator(this.context, this.builder.toString(), clazz);
     }
 
@@ -44,7 +42,7 @@ public class BeanLocator<T> {
         return this.context.app().of() + "/" + builder.toString();
     }
 
-    public T locate() {
-        return this.context.lookup(name(), clazz);
+    public <T> T locate() {
+        return (T) this.context.lookup(name(), clazz);
     }
 }

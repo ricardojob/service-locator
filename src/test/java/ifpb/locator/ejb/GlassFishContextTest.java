@@ -1,11 +1,12 @@
-package ifpb.ads.context;
+package ifpb.locator.ejb;
 
-import ifpb.ads.context.DefaultContext;
-import ifpb.ads.locator.GlassFishContext;
+
 import java.util.Properties;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
+import ifpb.locator.context.DefaultContext;
+import ifpb.locator.ConfigContext;
 /**
  *
  * @author Ricardo Job

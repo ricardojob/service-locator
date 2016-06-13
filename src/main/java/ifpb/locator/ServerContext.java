@@ -1,11 +1,11 @@
-package nomes;
+package ifpb.locator;
 
-import ifpb.ads.context.ConfigContext;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.Optional;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
+import ifpb.locator.named.BeanLocator;
+import ifpb.locator.named.Module;
 
 /**
  * @author Ricardo Job
@@ -16,7 +16,7 @@ public class ServerContext {
 
     private ConfigContext configContext;
     private Module module;
-    private Context contextServer;
+    private Optional<Context> contextServer = Optional.empty();
 
     public ServerContext(ConfigContext context, Module module) {
             this.configContext = context;
@@ -37,12 +37,10 @@ public class ServerContext {
 
     public <T> T lookup(String jndiResource, Class<T> type) {
         try {
-            this.contextServer = new InitialContext(configContext.properties());
-            return (T) contextServer.lookup(jndiResource);
+            Context temp =  contextServer.orElse(new InitialContext(configContext.properties()));
+            return (T) temp.lookup(jndiResource);
         } catch (NamingException ex) {
-//            Logger.getLogger(ServerContext.class.getName()).log(Level.SEVERE, null, ex);
             throw new RuntimeException(ex);
         }
     }
-
 }

@@ -1,8 +1,8 @@
-package ifpb.ads.locator;
+package ifpb.locator.ejb;
 
-import ifpb.ads.context.ConfigContext;
-import ifpb.ads.context.CorbaContext;
-import ifpb.ads.context.DefaultContext;
+import ifpb.locator.ConfigContext;
+import ifpb.locator.context.CorbaContext;
+import ifpb.locator.context.DefaultContext;
 import java.util.Properties;
 import javax.naming.Context;
 
@@ -25,7 +25,8 @@ public class GlassFishContext implements ConfigContext {
 
     @Override
     public Properties properties() {
-        Properties properties = new Properties(config.properties());
+        Properties properties = new Properties();
+        properties.putAll(config.properties());
         properties.put(Context.INITIAL_CONTEXT_FACTORY,
                 "com.sun.enterprise.naming.SerialInitContextFactory");
         return properties;

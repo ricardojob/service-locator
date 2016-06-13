@@ -1,5 +1,6 @@
-package ifpb.ads.context;
+package ifpb.locator.context;
 
+import ifpb.locator.ConfigContext;
 import java.util.Properties;
 import javax.naming.Context;
 
@@ -36,8 +37,8 @@ public class ProviderContext implements ConfigContext {
                 .append(port)
                 .toString();
 
-        Properties properties = new Properties(prop);
-      
+        Properties properties = new Properties();
+        properties.putAll(prop);
         properties.put(Context.PROVIDER_URL, url);
         return properties;
     }

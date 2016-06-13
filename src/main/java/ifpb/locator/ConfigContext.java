@@ -1,4 +1,4 @@
-package ifpb.ads.context;
+package ifpb.locator;
 
 import java.util.Properties;
 

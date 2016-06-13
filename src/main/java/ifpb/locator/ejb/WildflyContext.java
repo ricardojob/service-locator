@@ -1,9 +1,10 @@
-package ifpb.ads.locator;
- 
-import ifpb.ads.context.ConfigContext;
-import ifpb.ads.context.DefaultContext;
-import ifpb.ads.context.ProviderContext;
+package ifpb.locator.ejb;
+
+import ifpb.locator.ConfigContext;
+import ifpb.locator.context.DefaultContext;
+import ifpb.locator.context.ProviderContext;
 import java.util.Properties;
+import java.util.function.BiConsumer;
 import javax.naming.Context;
 
 /**
@@ -25,7 +26,8 @@ public class WildflyContext implements ConfigContext {
 
     @Override
     public Properties properties() {
-        Properties properties = new Properties(config.properties()); 
+        Properties properties = new Properties();
+        properties.putAll(config.properties());
         properties.put(Context.INITIAL_CONTEXT_FACTORY,
                 "org.jboss.naming.remote.client.InitialContextFactory");
         properties.put("jboss.naming.client.ejb.context", true);

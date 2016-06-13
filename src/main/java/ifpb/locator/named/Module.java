@@ -1,4 +1,4 @@
-package nomes;
+package ifpb.locator.named;
 
 import java.util.Optional;
 
@@ -11,9 +11,9 @@ public class Module {
 
     private Optional<String> app;
     private Optional<String> module;
-    private String prefix = "java:global";
+    private String prefix = "";
 
-    protected Module(String app) {
+    private Module(String app) {
         this(app, null);
     }
 
@@ -22,8 +22,11 @@ public class Module {
         this.module = Optional.ofNullable(module);
     }
 
-    public Module module(String module) {
-        return new Module(this.app.get(), module);
+    public Module module(String name) {
+        return new Module(this.app.get(), name);
+    }
+    public static Module app(String name) {
+        return new Module(name);
     }
     
     public Module global(){

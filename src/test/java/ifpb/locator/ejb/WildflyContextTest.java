@@ -1,12 +1,12 @@
-package ifpb.ads.context;
+package ifpb.locator.ejb;
 
-import ifpb.ads.context.DefaultContext;
-import ifpb.ads.context.ProviderContext;
-import ifpb.ads.locator.WildflyContext;
-import ifpb.ads.context.ProviderContext.Provider;
 import java.util.Properties;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import ifpb.locator.ConfigContext;
+import ifpb.locator.context.AuthContext;
+import ifpb.locator.context.DefaultContext;
+import ifpb.locator.context.ProviderContext;
 
 /**
  *
