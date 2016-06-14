@@ -15,13 +15,13 @@ public class ServerContextTest {
 
     private GlassFishContext context;
     private ServerContext server;
-    private Module module;
+    private App module;
 
     @Test
     public void testServer() {
         System.out.println("testServer");
         context = new GlassFishContext();
-        module =  Module.app("ejb").global();
+        module =  App.name("ejb").global();
         
         server = new ServerContext(context, module);
         assertNotNull("values null in properties", server);
@@ -43,11 +43,11 @@ public class ServerContextTest {
     @Test
     public void testModule() {
         System.out.println("testModules");
-        module = Module.app("ejb");
+        module = App.name("ejb");
         assertNotNull("values null in properties", module);
         String moduleResult = "/ejb";
         assertEquals(moduleResult, module.of());
-        Module core = module.module("core").global();
+        App core = module.module("core").global();
         assertNotNull("values null in properties", core);
         String coreResult = "java:global/ejb/core";
         assertEquals(coreResult, core.of());

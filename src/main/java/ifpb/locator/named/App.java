@@ -7,37 +7,38 @@ import java.util.Optional;
  * @mail ricardo.job@ifpb.edu.br
  * @since 12/06/2016, 02:36:08
  */
-public class Module {
+public class App { //App
 
     private Optional<String> app;
     private Optional<String> module;
     private String prefix = "";
 
-    private Module(String app) {
+    private App(String app) {
         this(app, null);
     }
 
-    private Module(String app, String module) {
+    private App(String app, String module) {
         this.app = Optional.ofNullable(app);
         this.module = Optional.ofNullable(module);
     }
 
-    public Module module(String name) {
-        return new Module(this.app.get(), name);
+    // Scope 
+    public App module(String name) {
+        return new App(this.app.get(), name);
     }
-    public static Module app(String name) {
-        return new Module(name);
+    public static App name(String name) {
+        return new App(name);
     }
     
-    public Module global(){
+    public App global(){
         this.prefix = "java:global";
         return this;
     }
-    public Module app(){
+    public App app(){
         this.prefix = "java:app";
         return this;
     }
-    public Module module(){
+    public App module(){
         this.prefix = "java:module";
         return this;
     }
@@ -46,6 +47,14 @@ public class Module {
         final StringBuilder builder = new StringBuilder(prefix);
         app.ifPresent(t -> builder.append("/").append(app.get()));
         module.ifPresent(t -> builder.append("/").append(module.get()));
-        return builder.toString();//+app + "/" + module;
+        return builder.toString();//+name + "/" + module;
     }
+//    class Scope extends App{
+//        
+//        public Scope(String app) {
+//            super(app);
+//        }
+//        
+//        
+//    }
 }

@@ -5,7 +5,7 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import ifpb.locator.named.BeanLocator;
-import ifpb.locator.named.Module;
+import ifpb.locator.named.App;
 
 /**
  * @author Ricardo Job
@@ -15,20 +15,20 @@ import ifpb.locator.named.Module;
 public class ServerContext {
 
     private ConfigContext configContext;
-    private Module module;
+    private App app;
     private Optional<Context> contextServer = Optional.empty();
 
-    public ServerContext(ConfigContext context, Module module) {
+    public ServerContext(ConfigContext context, App app) {
             this.configContext = context;
-            this.module = module; 
+            this.app = app; 
     }
 
     public BeanLocator bean(String bean) {
         return new BeanLocator(this).bean(bean);
     }
 
-    public Module app() {
-        return this.module;
+    public App app() {
+        return this.app;
     }
 
     public ConfigContext context() {
