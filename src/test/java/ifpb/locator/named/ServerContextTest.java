@@ -21,7 +21,7 @@ public class ServerContextTest {
     public void testServer() {
         System.out.println("testServer");
         context = new GlassFishContext();
-        module =  App.name("ejb").global();
+        module =  App.name("ejb").namespace(Scoped.GLOBAL);
         
         server = new ServerContext(context, module);
         assertNotNull("values null in properties", server);
@@ -37,17 +37,17 @@ public class ServerContextTest {
         assertEquals(moduleResult, server.app().of());
 
         String coreResult = "java:global/ejb/core";
-        assertEquals(coreResult, server.app().module("core").global().of());
+        assertEquals(coreResult, server.app().module("core").namespace(Scoped.GLOBAL).of());
     }
 
     @Test
     public void testModule() {
         System.out.println("testModules");
-        module = App.name("ejb");
+        module = App.name("ejb").namespace(Scoped.EMPTY);
         assertNotNull("values null in properties", module);
         String moduleResult = "/ejb";
         assertEquals(moduleResult, module.of());
-        App core = module.module("core").global();
+        App core = module.module("core").namespace(Scoped.GLOBAL);
         assertNotNull("values null in properties", core);
         String coreResult = "java:global/ejb/core";
         assertEquals(coreResult, core.of());

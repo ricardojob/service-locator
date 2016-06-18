@@ -1,6 +1,7 @@
 package ifpb.locator.named;
 
 import java.util.Optional;
+import java.util.function.Predicate;
 
 /**
  * @author Ricardo Job
@@ -11,50 +12,68 @@ public class App { //App
 
     private Optional<String> app;
     private Optional<String> module;
-    private String prefix = "";
+    private Optional<Scoped> scope;
+//    private String prefix = "";
 
     private App(String app) {
         this(app, null);
     }
 
     private App(String app, String module) {
-        this.app = Optional.ofNullable(app);
-        this.module = Optional.ofNullable(module);
+        this(app, module, Scoped.GLOBAL);
     }
 
-    // Scope 
-    public App module(String name) {
-        return new App(this.app.get(), name);
+    public App(String app, String module, Scoped scope) {
+        this.app = Optional.ofNullable(app);
+        this.module = Optional.ofNullable(module);
+        this.scope = Optional.ofNullable(scope);
     }
+
     public static App name(String name) {
         return new App(name);
     }
-    
-    public App global(){
-        this.prefix = "java:global";
-        return this;
-    }
-    public App app(){
-        this.prefix = "java:app";
-        return this;
-    }
-    public App module(){
-        this.prefix = "java:module";
-        return this;
+
+    public App module(String name) {
+        return new App(this.app.get(), name);
     }
 
-    public String of() {    
-        final StringBuilder builder = new StringBuilder(prefix);
+    public App namespace(Scoped scope) {
+        return new App(this.app.orElse(null), this.module.orElse(null), scope);
+    }
+
+//    public App global() {
+//        this.prefix = "java:global";
+//        return this;
+//    }
+//
+//    public App app() {
+//        this.prefix = "java:app";
+//        return this;
+//    }
+//
+//    public App module() {
+//        this.prefix = "java:module";
+//        return this;
+//    }
+    protected String of() {
+        final StringBuilder builder = new StringBuilder();
+//        scope.filter(t -> !t.equals(Scoped.EMPTY)).;
+//        ifPresent(t -> builder.append(scope.get()));
+        scope.filter(t -> !t.equals(Scoped.EMPTY))
+                .ifPresent(t -> builder.append(scope.get()));
         app.ifPresent(t -> builder.append("/").append(app.get()));
         module.ifPresent(t -> builder.append("/").append(module.get()));
         return builder.toString();//+name + "/" + module;
     }
-//    class Scope extends App{
-//        
-//        public Scope(String app) {
-//            super(app);
+
+//    public class Module extends App {
+//
+//        private final Module MODULE_EMPTY = new Module("", "");
+//
+//        public Module(String app, String module) {
+//            super(app, module);
 //        }
-//        
-//        
+//
+//
 //    }
 }
