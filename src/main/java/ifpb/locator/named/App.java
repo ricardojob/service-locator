@@ -1,19 +1,17 @@
 package ifpb.locator.named;
 
 import java.util.Optional;
-import java.util.function.Predicate;
 
 /**
  * @author Ricardo Job
  * @mail ricardo.job@ifpb.edu.br
  * @since 12/06/2016, 02:36:08
  */
-public class App { //App
+public class App {
 
     private Optional<String> app;
     private Optional<String> module;
     private Optional<Scoped> scope;
-//    private String prefix = "";
 
     private App(String app) {
         this(app, null);
@@ -41,39 +39,12 @@ public class App { //App
         return new App(this.app.orElse(null), this.module.orElse(null), scope);
     }
 
-//    public App global() {
-//        this.prefix = "java:global";
-//        return this;
-//    }
-//
-//    public App app() {
-//        this.prefix = "java:app";
-//        return this;
-//    }
-//
-//    public App module() {
-//        this.prefix = "java:module";
-//        return this;
-//    }
     protected String of() {
         final StringBuilder builder = new StringBuilder();
-//        scope.filter(t -> !t.equals(Scoped.EMPTY)).;
-//        ifPresent(t -> builder.append(scope.get()));
         scope.filter(t -> !t.equals(Scoped.EMPTY))
                 .ifPresent(t -> builder.append(scope.get()));
         app.ifPresent(t -> builder.append("/").append(app.get()));
         module.ifPresent(t -> builder.append("/").append(module.get()));
-        return builder.toString();//+name + "/" + module;
+        return builder.toString();
     }
-
-//    public class Module extends App {
-//
-//        private final Module MODULE_EMPTY = new Module("", "");
-//
-//        public Module(String app, String module) {
-//            super(app, module);
-//        }
-//
-//
-//    }
 }
