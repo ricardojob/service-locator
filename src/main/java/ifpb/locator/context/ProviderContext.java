@@ -51,8 +51,10 @@ public class ProviderContext implements ConfigContext {
         return this.url;
     }
 
-    enum Provider {
+    public enum Provider {
         HTTP("http:"),
+        RMI("rmi:"),
+        IIOP("iiop:"),
         HTTP_REMOTING("http-remoting:");
 
         private final String provider;
