@@ -6,6 +6,7 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import ifpb.locator.named.BeanLocator;
 import ifpb.locator.named.App;
+import ifpb.locator.named.Scoped;
 
 /**
  * @author Ricardo Job
@@ -21,6 +22,14 @@ public class ServerContext {
     public ServerContext(ConfigContext context, App app) {
             this.configContext = context;
             this.app = app; 
+    }
+    /**
+     * Construtor usando para acesso RMI e IIOP
+     * @param context configuração do servidor remoto
+     */
+    public ServerContext(ConfigContext context) {
+            this(context, App.name(null).namespace(Scoped.EMPTY));
+            
     }
 
     public BeanLocator bean(String bean) {
