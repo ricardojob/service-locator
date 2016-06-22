@@ -1,6 +1,7 @@
 package ifpb.locator.named;
 
 import java.util.Optional;
+import java.util.function.Predicate;
 
 /**
  * @author Ricardo Job
@@ -45,6 +46,12 @@ public class App {
                 .ifPresent(t -> builder.append(scope.get()));
         app.ifPresent(t -> builder.append("/").append(app.get()));
         module.ifPresent(t -> builder.append("/").append(module.get()));
+        
+//        Optional<String> retorno = Optional.of(builder.toString());
+//        return retorno
+//                .filter(t -> "".equals(t.trim()))
+//                .orElse(builder.append("/").toString());
+
         return builder.toString();
     }
 }

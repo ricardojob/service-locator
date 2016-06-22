@@ -1,9 +1,6 @@
 package ifpb.locator.context;
 
 import ifpb.locator.ConfigContext;
-import ifpb.locator.context.CorbaContext;
-import ifpb.locator.context.DefaultContext;
-import ifpb.locator.context.ProviderContext;
 import ifpb.locator.context.ProviderContext.Provider;
 import java.util.Properties;
 import javax.naming.Context;
@@ -13,23 +10,22 @@ import javax.naming.Context;
  * @mail ricardo.job@ifpb.edu.br
  * @since 11/06/2016, 23:46:23
  */
-public class IIOPContext implements ConfigContext {
+public class RMIContext implements ConfigContext {
 
     private final ConfigContext config;
 
-    public IIOPContext() {
-        this("127.0.0.1","1050");
+    public RMIContext() {
+        this("127.0.0.1", "1099");
     }
-    public IIOPContext(String host, String port) {
+
+    public RMIContext(String host, String port) {
         this(
-                new CorbaContext(
-                        new ProviderContext(
-                                new DefaultContext(host, port),Provider.IIOP)
-                )
+            new ProviderContext(
+                new DefaultContext(host, port), Provider.RMI)
         );
     }
 
-    public IIOPContext(final ConfigContext config) {
+    public RMIContext(final ConfigContext config) {
         this.config = config;
     }
 
@@ -38,7 +34,7 @@ public class IIOPContext implements ConfigContext {
         Properties properties = new Properties();
         properties.putAll(config.properties());
         properties.put(Context.INITIAL_CONTEXT_FACTORY,
-                "com.sun.jndi.cosnaming.CNCtxFactory");
+                "com.sun.jndi.rmi.registry.RegistryContextFactory");
         return properties;
     }
 

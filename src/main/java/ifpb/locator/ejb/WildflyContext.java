@@ -17,7 +17,10 @@ public class WildflyContext implements ConfigContext {
     private final ConfigContext config;
 
     public WildflyContext() {
-        this(new ProviderContext(new DefaultContext("127.0.0.1", "8080")));
+        this("127.0.0.1", "8080");
+    }
+    public WildflyContext(String host, String port) {
+        this(new ProviderContext(new DefaultContext(host, port)));
     }
 
     public WildflyContext(final ConfigContext config) {

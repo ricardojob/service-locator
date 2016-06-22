@@ -16,7 +16,11 @@ public class GlassFishContext implements ConfigContext {
     private final ConfigContext config;
 
     public GlassFishContext() {
-        this(new CorbaContext(new DefaultContext("127.0.0.1", "3700")));
+        this("127.0.0.1", "3700");
+    }
+
+    public GlassFishContext(String host, String port) {
+        this(new CorbaContext(new DefaultContext(host, port)));
     }
 
     public GlassFishContext(final ConfigContext config) {

@@ -7,7 +7,7 @@ import ifpb.locator.ServerContext;
  * @mail ricardo.job@ifpb.edu.br
  * @since 12/06/2016, 01:51:15
  */
-public class BeanLocator{
+public class BeanLocator {
 
     private StringBuilder builder;
     private Class clazz;
@@ -39,7 +39,11 @@ public class BeanLocator{
     }
 
     public String name() {
-        return this.context.app().of() + "/" + builder.toString();
+        String result = context.app().of().trim();
+        if (!"".equals(result.trim())) { //TODO: retirar o if
+            result += "/";
+        }
+        return result + builder.toString();
     }
 
     public <T> T locate() {
